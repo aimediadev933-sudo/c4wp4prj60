@@ -1,1 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Data Transfer Infrastructure and Training for Asia@Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FCF5EC;
+            color: #1D1D1B;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #9A2AA0 0%, #DA3FA3 100%);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .partners {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo img {
+            max-height: 50px;
+            max-width: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 80px 0;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #FCF5EC 0%, #F5E8D3 100%);
+            border: 2px solid #DA3FA3;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(154, 42, 160, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(154, 42, 160, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #9A2AA0;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1D1D1B;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1D1D1B;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Objectives Grid */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .objective-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #9A2AA0;
+            transition: all 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .objective-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #9A2AA0, #DA3FA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .objective-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1D1D1B;
+        }
+
+        .objective-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Countries Section */
+        .countries-section {
+            background: #FCF5EC;
+            padding: 80px 0;
+        }
+
+        .countries-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .countries-group {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .countries-group.partner {
+            border-top: 5px solid #9A2AA0;
+        }
+
+        .countries-group.beneficiary {
+            border-top: 5px solid #DA3FA3;
+        }
+
+        .countries-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1D1D1B;
+        }
+
+        .countries-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .country-tag {
+            background: #FCF5EC;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4E245C;
+            border: 1px solid #DA3FA3;
+            transition: all 0.3s ease;
+        }
+
+        .country-tag:hover {
+            background: #DA3FA3;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* DTN Infrastructure Section */
+        .dtn-section {
+            background: linear-gradient(135deg, #9A2AA0 0%, #DA3FA3 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .dtn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .dtn-node {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .dtn-node:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .dtn-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 32px;
+            color: white;
+        }
+
+        .dtn-country {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .dtn-organization {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .dtn-status {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Activities Timeline */
+        .activities-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #9A2AA0, #DA3FA3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: #9A2AA0;
+            border: 4px solid #FCF5EC;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: #FCF5EC;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #9A2AA0;
+        }
+
+        /* Performance Metrics */
+        .performance-section {
+            background: #FCF5EC;
+            padding: 80px 0;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .performance-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #DA3FA3;
+            transition: all 0.3s ease;
+        }
+
+        .performance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .performance-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #DA3FA3, #9A2AA0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .performance-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1D1D1B;
+        }
+
+        .performance-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Outcomes Section */
+        .outcomes-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .outcome-card {
+            background: #FCF5EC;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border-left: 5px solid #DA3FA3;
+            transition: all 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(218, 63, 163, 0.1);
+        }
+
+        .outcome-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1D1D1B;
+        }
+
+        .outcome-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Challenges Section */
+        .challenges-section {
+            background: #FCF5EC;
+            padding: 80px 0;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .challenge-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border-left: 5px solid #4E245C;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(78, 36, 92, 0.1);
+        }
+
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4E245C, #9A2AA0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .challenge-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1D1D1B;
+        }
+
+        .challenge-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Future Directions Section */
+        .future-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .future-card {
+            background: #FCF5EC;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #DA3FA3;
+            transition: all 0.3s ease;
+        }
+
+        .future-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .future-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #DA3FA3, #9A2AA0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .future-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1D1D1B;
+        }
+
+        .future-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* SDGs Section */
+        .sdgs-section {
+            background: #FCF5EC;
+            padding: 80px 0;
+        }
+
+        .sdgs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .sdg-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #DA3FA3;
+            transition: all 0.3s ease;
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(154, 42, 160, 0.2);
+        }
+
+        .sdg-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #9A2AA0;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1D1D1B;
+            color: white;
+            padding: 60px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-partners {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .countries-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .dtn-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .performance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .future-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .partners {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .partner-logo {
+                height: 70px;
+                padding: 10px 15px;
+            }
+
+            .partner-logo img {
+                max-height: 40px;
+                max-width: 100px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countries-container {
+                grid-template-columns: 1fr;
+            }
+
+            .dtn-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sdgs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .footer-partners {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 40px 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .content-section {
+                padding: 60px 0;
+            }
+
+            .stats-section {
+                padding: 60px 0;
+            }
+
+            .countries-section {
+                padding: 60px 0;
+            }
+
+            .dtn-section {
+                padding: 60px 0;
+            }
+
+            .activities-section {
+                padding: 60px 0;
+            }
+
+            .performance-section {
+                padding: 60px 0;
+            }
+
+            .outcomes-section {
+                padding: 60px 0;
+            }
+
+            .challenges-section {
+                padding: 60px 0;
+            }
+
+            .future-section {
+                padding: 60px 0;
+            }
+
+            .sdgs-section {
+                padding: 60px 0;
+            }
+
+            .partner-logo {
+                height: 60px;
+                padding: 8px 12px;
+            }
+
+            .partner-logo img {
+                max-height: 35px;
+                max-width: 80px;
+            }
+
+            .stat-card {
+                padding: 30px 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .objective-card {
+                padding: 30px 20px;
+            }
+
+            .countries-group {
+                padding: 30px 20px;
+            }
+
+            .dtn-node {
+                padding: 30px 20px;
+            }
+
+            .performance-card {
+                padding: 30px 20px;
+            }
+
+            .outcome-card {
+                padding: 30px 20px;
+            }
+
+            .challenge-card {
+                padding: 30px 20px;
+            }
+
+            .future-card {
+                padding: 30px 20px;
+            }
+
+            .sdg-card {
+                padding: 20px 15px;
+            }
+
+            .sdgs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            footer {
+                padding: 40px 0 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="project-badge">WP4 • 4th Call Project</div>
+                <h1>Large Data Transfer Infrastructure</h1>
+                <p class="subtitle">Building High-Performance Data Transfer Capabilities Across Asia-Pacific</p>
+                
+                <div class="partners">
+                    <div class="partner-logo">
+                        <img src="images/logos/eu-logo.png" alt="European Union" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images/logos/tein-logo.png" alt="TEIN*CC" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images/logos/asia-connect-logo.png" alt="Asia@Connect" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">104</span>
+                    <div class="stat-label">Personnel Trained</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">DTN Servers Deployed</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <div class="stat-label">R&E Collaborations</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">Partner Countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Project Objectives</h2>
+            <p class="section-subtitle">Enhancing regional capacity for large-scale scientific data transfers and collaboration</p>
+            
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-icon">🖥️</div>
+                    <h3 class="objective-title">Deploy DTN Infrastructure</h3>
+                    <p class="objective-description">Install standardized Data Transfer Node servers in four partner countries using common architecture and configuration.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">👨‍🎓</div>
+                    <h3 class="objective-title">Train Technical Personnel</h3>
+                    <p class="objective-description">Build local expertise in DTN installation, support, maintenance, and optimization for sustained operations.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🔬</div>
+                    <h3 class="objective-title">Guide Domain Users</h3>
+                    <p class="objective-description">Train researchers in genomics, climate modeling, and physics to effectively transfer large datasets using DTN tools.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">📢</div>
+                    <h3 class="objective-title">Promote DTN Adoption</h3>
+                    <p class="objective-description">Raise awareness through workshops and APRP Working Group engagement to expand regional DTN usage.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🤝</div>
+                    <h3 class="objective-title">Enable Cross-Border Collaboration</h3>
+                    <p class="objective-description">Facilitate long-term international research partnerships through high-performance data transfer capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="countries-section">
+            <p class="section-subtitle">Multi-country initiative to establish data transfer infrastructure across Asia-Pacific</p>
+            
+            <div class="countries-container">
+                <div class="countries-group partner">
+                    <h3 class="countries-title">Partner Countries</h3>
+                    <div class="countries-list">
+                        <span class="country-tag">Singapore (Lead)</span>
+                        <span class="country-tag">Indonesia</span>
+                        <span class="country-tag">Philippines</span>
+                        <span class="country-tag">Thailand</span>
+                    </div>
+                </div>
+                
+                <div class="countries-group beneficiary">
+                    <h3 class="countries-title">Beneficiary Region</h3>
+                    <div class="countries-list">
+                        <span class="country-tag">Bangladesh</span>
+                        <span class="country-tag">India</span>
+                        <span class="country-tag">Sri Lanka</span>
+                        <span class="country-tag">Vietnam</span>
+                        <span class="country-tag">Asia-Pacific Region</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dtn-section">
+        <div class="container">
+            <h2 class="section-title">DTN Infrastructure Deployed</h2>
+            <p class="section-subtitle">High-performance data transfer nodes established across four countries</p>
+            
+            <div class="dtn-grid">
+                <div class="dtn-node">
+                    <div class="dtn-icon">🇸🇬</div>
+                    <div class="dtn-country">Singapore</div>
+                    <div class="dtn-organization">SingAREN</div>
+                    <div class="dtn-status">Operational</div>
+                </div>
+                <div class="dtn-node">
+                    <div class="dtn-icon">🇹🇭</div>
+                    <div class="dtn-country">Thailand</div>
+                    <div class="dtn-organization">ThaiREN</div>
+                    <div class="dtn-status">Operational</div>
+                </div>
+                <div class="dtn-node">
+                    <div class="dtn-icon">🇵🇭</div>
+                    <div class="dtn-country">Philippines</div>
+                    <div class="dtn-organization">ASTI</div>
+                    <div class="dtn-status">Operational</div>
+                </div>
+                <div class="dtn-node">
+                    <div class="dtn-icon">🇮🇩</div>
+                    <div class="dtn-country">Indonesia</div>
+                    <div class="dtn-organization">IDREN</div>
+                    <div class="dtn-status">Operational</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="activities-section">
+        <div class="container">
+            <h2 class="section-title">Implementation Activities</h2>
+            <p class="section-subtitle">Comprehensive approach to DTN deployment and training</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">DTN Server Deployment</h3>
+                        <p>DTN servers with common configuration installed in Singapore, Thailand, Indonesia, and Philippines. Infrastructure fully commissioned and transferred to local partners.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Technical Specialist Training</h3>
+                        <p>Hybrid online workshops and Zoom sessions during APAN50, APAN51, and APAN52. Training on perfSONAR, Globus, and Kubernetes tools.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Domain User Training</h3>
+                        <p>Hands-on training for researchers in genomics, climate modeling, and particle physics, enabling effective use of DTN services for large-scale data mobility.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Awareness & Outreach</h3>
+                        <p>DTN promotion through APAN APRP Working Group sessions, internal REN events, and institutional outreach to build regional deployment momentum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance-section">
+        <div class="container">
+            <h2 class="section-title">Research Domain Applications</h2>
+            <p class="section-subtitle">DTN infrastructure supporting diverse scientific research areas</p>
+            
+            <div class="performance-grid">
+                <div class="performance-card">
+                    <div class="performance-icon">🧬</div>
+                    <h3 class="performance-title">Genomics Research</h3>
+                    <p class="performance-description">High-speed transfer of genomic datasets between research institutions and analysis centers, accelerating bioinformatics workflows.</p>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">🌡️</div>
+                    <h3 class="performance-title">Climate Modeling</h3>
+                    <p class="performance-description">Efficient movement of large climate simulation datasets and weather modeling data across research collaborations.</p>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">⚛️</div>
+                    <h3 class="performance-title">High-Energy Physics</h3>
+                    <p class="performance-description">Transfer of particle physics experimental data and simulation results between international research facilities.</p>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-icon">💻</div>
+                    <h3 class="performance-title">HPC Integration</h3>
+                    <p class="performance-description">Seamless data movement between high-performance computing centers and research institutions for computational workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="outcomes-section">
+        <div class="container">
+            <h2 class="section-title">Key Outcomes</h2>
+            <p class="section-subtitle">Measurable achievements in regional data transfer capabilities</p>
+            
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <h3 class="outcome-title">DTN Infrastructure in Four Countries</h3>
+                    <p class="outcome-description">Servers in Singapore, Thailand, Philippines, and Indonesia were installed and transferred to local partners, forming a regional testbed for collaboration.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">104 Personnel Trained</h3>
+                    <p class="outcome-description">Technical experts and domain researchers gained hands-on experience with DTN software and protocols across three APAN meetings and follow-up sessions.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">12 R&E Collaborations Supported</h3>
+                    <p class="outcome-description">DTN deployment supported regional research collaborations in climate science, genomics, and physics by accelerating dataset mobility.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Regional DTN Awareness Raised</h3>
+                    <p class="outcome-description">Project raised awareness about DTN technologies via APRP Working Group sessions and created training content for emerging RENs.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Community Support Network</h3>
+                    <p class="outcome-description">Trained engineers form informal regional support structure for DTN systems, enabling peer-to-peer troubleshooting and knowledge sharing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="challenges-section">
+        <div class="container">
+            <h2 class="section-title">Challenges & Lessons Learned</h2>
+            <p class="section-subtitle">Overcoming obstacles in DTN infrastructure deployment</p>
+            
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <div class="challenge-icon">🦠</div>
+                    <h3 class="challenge-title">COVID-19 Impact</h3>
+                    <p class="challenge-description">Travel bans and customs issues caused procurement delays and shifted all workshops online, reducing hands-on experience and slowing hardware deployment.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">⏳</div>
+                    <h3 class="challenge-title">Incomplete Training Delivery</h3>
+                    <p class="challenge-description">One partner was unresponsive in the final phase, causing delays in delivering the concluding hands-on workshop planned for APAN52.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">🔧</div>
+                    <h3 class="challenge-title">Advanced Technical Limitations</h3>
+                    <p class="challenge-description">Deep-dive practical exercises involving advanced tuning and distributed testing were difficult to execute virtually and require future in-person events.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">📝</div>
+                    <h3 class="challenge-title">Policy & Soft Skills Gaps</h3>
+                    <p class="challenge-description">Several attendees lacked experience with policy writing and outreach strategies, limiting their ability to advocate for DTN services institutionally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="future-section">
+        <div class="container">
+            <h2 class="section-title">Future Directions</h2>
+            <p class="section-subtitle">Expanding DTN infrastructure and capabilities across the region</p>
+            
+            <div class="future-grid">
+                <div class="future-card">
+                    <div class="future-icon">🎓</div>
+                    <h3 class="future-title">Complete Final Technical Workshop</h3>
+                    <p class="future-description">Organize concluding hands-on event in person to fulfill remaining training commitments and ensure full skill transfer to partner sites.</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🌏</div>
+                    <h3 class="future-title">Expand to New RENs</h3>
+                    <p class="future-description">Support DTN site setup in Bangladesh, India, and Sri Lanka based on regional demand and integrate with existing infrastructure.</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🤝</div>
+                    <h3 class="future-title">Formalize Support Model</h3>
+                    <p class="future-description">Evolve regional DTN user group into formal operations network within APAN/APRP for continuous capacity building.</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🔬</div>
+                    <h3 class="future-title">Sector-Specific Integration</h3>
+                    <p class="future-description">Explore DTN integration into genomic workflows, environmental monitoring, and bioinformatics through targeted domain partnerships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sdgs-section">
+        <div class="container">
+            <h2 class="section-title">Sustainable Development Goals</h2>
+            <p class="section-subtitle">Contributing to global education and infrastructure development objectives</p>
+            
+            <div class="sdgs-grid">
+                <div class="sdg-card">
+                    <div class="sdg-number">SDG 4</div>
+                    <h4>Quality Education</h4>
+                    <p>Enhancing research education through high-performance data infrastructure</p>
+                </div>
+                <div class="sdg-card">
+                    <div class="sdg-number">SDG 9</div>
+                    <h4>Industry & Innovation</h4>
+                    <p>Building resilient data transfer infrastructure and promoting innovation</p>
+                </div>
+                <div class="sdg-card">
+                    <div class="sdg-number">SDG 17</div>
+                    <h4>Partnerships</h4>
+                    <p>Strengthening global partnerships for scientific collaboration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Project Partners</h3>
+                <p class="footer-text">This large data transfer infrastructure initiative was achieved through strategic collaboration between regional research networks and technology institutes</p>
+                
+                <div class="footer-partners">
+                    <div class="footer-logo">
+                        <p><strong>SingAREN</strong><br>Singapore Advanced Research and Education Network</p>
+                    </div>
+                    <div class="footer-logo">
+                        <p><strong>ASTI</strong><br>Advanced Science and Technology Institute, Philippines</p>
+                    </div>
+                    <div class="footer-logo">
+                        <p><strong>IDREN</strong><br>Indonesia Research and Education Network</p>
+                    </div>
+                    <div class="footer-logo">
+                        <p><strong>ThaiREN</strong><br>Thailand Research and Education Network</p>
+                    </div>
+                    <div class="footer-logo">
+                        <p><strong>APRP Working Group</strong><br>Asia-Pacific Research Platform</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid #444; padding-top: 20px; opacity: 0.6;">
+                <p>&copy; 2021 Large Data Transfer Infrastructure Project. Supported by EU Asia@Connect program.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
